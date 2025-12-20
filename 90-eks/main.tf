@@ -3,7 +3,7 @@ module "eks" {
   version = "~> 21.0" # this is module version
 
   name               =   local.common_name_suffix
-  kubernetes_version = "1.33"
+  kubernetes_version = "1.32"
   # kubernetes_version = var.eks_version
 
   addons = {
