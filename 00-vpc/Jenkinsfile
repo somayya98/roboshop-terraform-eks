@@ -73,7 +73,7 @@ pipeline {
 		       script {
 			       build job: '10-sg',
 				       wait: false, // Wait for completion
-				       propagate: false, // Propagate status
+				       propagate: false // Propagate status
 		        }
 	        }
         }
