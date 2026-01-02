@@ -88,15 +88,6 @@ pipeline {
 		                }
 	                }
                 }
-                stage('EKS'){
-                    steps {
-		                script {
-			                build job: '90-eks',
-				                wait: false, // Wait for completion
-				                propagate: false // Propagate status
-		                }
-	                }
-                }
                 stage('ACM'){
                     steps {
 		                script {
@@ -106,10 +97,10 @@ pipeline {
 		                }
 	                }
                 }
-                stage('ALB'){
+                stage('EKS'){
                     steps {
 		                script {
-			                build job: '80-frontend-alb',
+			                build job: '90-eks',
 				                wait: false, // Wait for completion
 				                propagate: false // Propagate status
 		                }
@@ -117,20 +108,30 @@ pipeline {
                 }
             }
         }
-    }     
+        stage('ALB'){
+            steps {
+                script {
+                    build job: '80-frontend-alb',
+                        wait: false, // Wait for completion
+                        propagate: false // Propagate status
+                }
+            }
+        }
+
+    }
     post{
         always{
             echo 'I will always say Hello again!'
             cleanWs()
         }
         success {
-            echo 'I will run if sucess'
+            echo 'I will run if success'
         }
         failure {
-            echo 'I will run if sucess'
-        aborted {
-             echo 'pipeline is aborted'
+            echo 'I will run if failure'
         }
+        aborted {
+            echo 'pipeline is aborted'
         }
     }
 }
