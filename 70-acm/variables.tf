@@ -7,9 +7,9 @@ variable "environment"{
 }
 
 variable "domain_name" {
-  default = "somayya.store"
+  default = "somayya.fun"
 }
 
 variable "zone_id" {
-  default = "Z00734042DAU2MMSOHNJY"
+  default = "Z0775499YCLL41QUIF01"
 }
